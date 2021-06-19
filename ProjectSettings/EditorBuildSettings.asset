@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Authentication/EmailPassword.unity
+    guid: fec63ce9066d64d3ebc4734309321df6
   m_configObjects: {}
