@@ -20,8 +20,10 @@ namespace Scenes.Authentication
             wc.Headers[HttpRequestHeader.ContentType] = "application/json";
             var url = $"https://identitytoolkit.googleapis.com/v1/accounts:signUp?key={_apiKey}";
             var requestBody = new FirebaseApi.EmailPasswordAuthRequest(inputEmail, inputPassword).ToJson();
-            string response = wc.UploadString(new Uri(url), requestBody);
-            Debug.Log(response);
+            var response = wc.UploadString(new Uri(url), requestBody);
+            var authResult = FirebaseApi.EmailPasswordAuthResponse.FromJson(response);
+            Debug.Log($"idToken: {authResult.idToken}");
+            Debug.Log($"refreshToken: {authResult.refreshToken}");
 
             resultText.text = "サインアップに成功しました";
         }
@@ -36,8 +38,10 @@ namespace Scenes.Authentication
             wc.Headers[HttpRequestHeader.ContentType] = "application/json";
             var url = $"https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={_apiKey}";
             var requestBody = new FirebaseApi.EmailPasswordAuthRequest(inputEmail, inputPassword).ToJson();
-            string response = wc.UploadString(new Uri(url), requestBody);
-            Debug.Log(response);
+            var response = wc.UploadString(new Uri(url), requestBody);
+            var authResult = FirebaseApi.EmailPasswordAuthResponse.FromJson(response);
+            Debug.Log($"idToken: {authResult.idToken}");
+            Debug.Log($"refreshToken: {authResult.refreshToken}");
 
             resultText.text = "ログインに成功しました";
         }

@@ -24,6 +24,20 @@ namespace Scenes.Share
             }
         }
 
+        [Serializable]
+        public class EmailPasswordAuthResponse
+        {
+            public string idToken;
+            public string email;
+            public string refreshToken;
+            public string expiresIn; // トークンの有効期間（秒）
+            public string localId; // uid
+            public bool registered;
 
+            public static EmailPasswordAuthResponse FromJson(string json)
+            {
+                return JsonUtility.FromJson<EmailPasswordAuthResponse>(json);
+            }
+        }
     }
 }
