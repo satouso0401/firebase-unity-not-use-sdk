@@ -39,5 +39,54 @@ namespace Scenes.Share
                 return JsonUtility.FromJson<EmailPasswordAuthResponse>(json);
             }
         }
+
+        [Serializable]
+        public class SignInWithIdpRequest
+        {
+            public string postBody;
+            public string requestUri;
+            public bool returnIdpCredential;
+            public bool returnSecureToken;
+
+            public SignInWithIdpRequest(string postBody, string requestUri, bool returnIdpCredential,
+                bool returnSecureToken)
+            {
+                this.postBody = postBody;
+                this.requestUri = requestUri;
+                this.returnIdpCredential = returnIdpCredential;
+                this.returnSecureToken = returnSecureToken;
+            }
+
+            public static SignInWithIdpRequest SignInWithIdpTwitterRequest(string accessToken, string oauthTokenSecret,
+                string requestUri = "http://localhost", bool returnIdpCredential = true, bool returnSecureToken = true)
+            {
+                return new SignInWithIdpRequest(
+                    $"access_token={accessToken}&oauth_token_secret={oauthTokenSecret}&providerId=twitter.com",
+                    requestUri,
+                    returnIdpCredential,
+                    returnSecureToken
+                );
+            }
+
+            public String ToJson()
+            {
+                return JsonUtility.ToJson(this);
+            }
+        }
+        
+        [Serializable]
+        public class SignInWithIdpResponse
+        {
+            public string providerId;
+            public string localId; // uid
+            public string idToken;
+            public string refreshToken;
+            public string expiresIn; // トークンの有効期間（秒）
+
+            public static SignInWithIdpResponse FromJson(string json)
+            {
+                return JsonUtility.FromJson<SignInWithIdpResponse>(json);
+            }
+        }
     }
 }
