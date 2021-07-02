@@ -88,5 +88,35 @@ namespace Scenes.Share
                 return JsonUtility.FromJson<SignInWithIdpResponse>(json);
             }
         }
+        
+        [Serializable]
+        public class SignInWithCustomTokenRequest
+        {
+            public string token;
+            public bool returnSecureToken = true;
+
+            public SignInWithCustomTokenRequest(string token)
+            {
+                this.token = token;
+            }
+            public String ToJson()
+            {
+                return JsonUtility.ToJson(this);
+            }
+        }
+        
+        [Serializable]
+        public class SignInWithCustomTokenResponse
+        {
+            public string idToken;
+            public string refreshToken;
+            public string expiresIn; // The number of seconds in which the ID token expires.
+            
+            public static SignInWithCustomTokenResponse FromJson(string json)
+            {
+                return JsonUtility.FromJson<SignInWithCustomTokenResponse>(json);
+            }
+        }
+
     }
 }
