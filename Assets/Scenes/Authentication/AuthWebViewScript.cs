@@ -7,11 +7,12 @@ namespace Scenes.Authentication
 {
     public class AuthWebViewScript : MonoBehaviour
     {
+        private string _projectId = Config.FirebaseProjectId;
         WebViewObject webViewObject;
 
         void Start()
         {
-            var url = "https://fb-vanilla-sample.firebaseapp.com/auth/auth.html";
+            var url = $"https://{_projectId}.firebaseapp.com/auth/auth.html";
             var salt = DateTime.Now.ToString("yyyyMMddHHmm");
             var urlWithSalt = $"{url}?_={salt}"; // WebViewはキャッシュの制御が難しいのでソルトを付与して強制的にキャッシュを無効にする
 

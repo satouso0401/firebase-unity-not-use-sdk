@@ -8,7 +8,7 @@ namespace Scenes.Authentication
 {
     public class EmailPasswordScript : MonoBehaviour
     {
-        private string _apiKey = Config.ApiKey;
+        private string _apiKey = Config.FirebaseApiKey;
 
         public void SignUp()
         {

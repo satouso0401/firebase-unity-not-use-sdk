@@ -7,8 +7,9 @@ namespace Scenes.Authentication
 {
     public class TwitterScript : MonoBehaviour
     {
-        private string _apiKey = Config.ApiKey;
+        private string _apiKey = Config.FirebaseApiKey;
         public static TwitterApi.OAuthResultObject oAuthResult;
+
         public void SignIn()
         {
             WebClient wc = new WebClient();
@@ -24,5 +25,4 @@ namespace Scenes.Authentication
             Debug.Log($"refreshToken: {authResult.refreshToken}");
         }
     }
-
 }
