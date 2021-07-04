@@ -117,6 +117,22 @@ namespace Scenes.Share
                 return JsonUtility.FromJson<SignInWithCustomTokenResponse>(json);
             }
         }
+        
+        [Serializable]
+        public class RefreshIdTokenResponse
+        {
+            public string expires_in; // トークンの有効期間（秒）
+            public string token_type;
+            public string refresh_token;
+            public string id_token;
+            public string user_id; // uid
+            public string project_id;
+
+            public static RefreshIdTokenResponse FromJson(string json)
+            {
+                return JsonUtility.FromJson<RefreshIdTokenResponse>(json);
+            }
+        }
 
     }
 }
